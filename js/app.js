@@ -3,39 +3,56 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Coin = (function () {
-    function Coin(value) {
-        this.value = value;
-    }
-    Object.defineProperty(Coin.prototype, "Value", {
-        get: function () {
-            return this.value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Coin;
-}());
-var Dime = (function (_super) {
-    __extends(Dime, _super);
-    function Dime() {
-        return _super.call(this, .10) || this;
-    }
-    Dime.prototype.getImageUrl = function () {
-        return "img/Dime.png";
-    };
-    return Dime;
-}(Coin));
-var Quarter = (function (_super) {
-    __extends(Quarter, _super);
-    function Quarter() {
-        return _super.call(this, .25) || this;
-    }
-    Quarter.prototype.getImageUrl = function () {
-        return "img/Quarter.png";
-    };
-    return Quarter;
-}(Coin));
+var Coins;
+(function (Coins) {
+    var Coin = (function () {
+        function Coin(value) {
+            this.value = value;
+        }
+        Object.defineProperty(Coin.prototype, "Value", {
+            get: function () {
+                return this.value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return Coin;
+    }());
+    Coins.Coin = Coin;
+    var Nickle = (function (_super) {
+        __extends(Nickle, _super);
+        function Nickle() {
+            return _super.call(this, .5) || this;
+        }
+        Nickle.prototype.getImageUrl = function () {
+            return "img/nickle.png";
+        };
+        return Nickle;
+    }(Coin));
+    Coins.Nickle = Nickle;
+    var Dime = (function (_super) {
+        __extends(Dime, _super);
+        function Dime() {
+            return _super.call(this, .10) || this;
+        }
+        Dime.prototype.getImageUrl = function () {
+            return "img/Dime.png";
+        };
+        return Dime;
+    }(Coin));
+    Coins.Dime = Dime;
+    var Quarter = (function (_super) {
+        __extends(Quarter, _super);
+        function Quarter() {
+            return _super.call(this, .25) || this;
+        }
+        Quarter.prototype.getImageUrl = function () {
+            return "img/Quarter.png";
+        };
+        return Quarter;
+    }(Coin));
+    Coins.Quarter = Quarter;
+})(Coins || (Coins = {}));
 //var coin = new Quarter(); 
 var ProductCategory = (function () {
     function ProductCategory() {
@@ -141,7 +158,7 @@ var VendingMachine = (function () {
         this.paid = ko.observable(0);
         this.selectedCell = ko.observable(new Cell(new CocaCola()));
         this.cells = ko.observableArray([]);
-        this.acceptedCoins = [new Quarter(), new Dime()];
+        this.acceptedCoins = [new Coins.Quarter(), new Coins.Dime(), new Coins.Nickle()];
         this.canPay = ko.pureComputed(function () { return _this.paid() -
             _this.selectedCell().product.price >= 0; });
         this.select = function (cell) {

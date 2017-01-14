@@ -1,33 +1,46 @@
-abstract class Coin {
-    value: number;
-    constructor(value:number) {
-        this.value = value;
+namespace Coins {
+
+    export abstract class Coin {
+        value: number;
+        constructor(value: number) {
+            this.value = value;
+        }
+
+        abstract getImageUrl(): string;
+
+        get Value() {
+            return this.value;
+        }
     }
 
-    abstract getImageUrl() : string;
+    export class Nickle extends Coin {
+        constructor() {
+            super(.05);
+        }
 
-    get Value() {
-        return this.value;
-    }    
-}
-
-class Dime extends Coin {
-    constructor() {
-        super(.10);
+        getImageUrl(): string {
+            return "img/nickle.png";
+        }
     }
 
-    getImageUrl () : string {
-        return "img/Dime.png";
-    }
-}
+    export class Dime extends Coin {
+        constructor() {
+            super(.10);
+        }
 
-class Quarter extends Coin {
-    constructor() {
-        super(.25);
+        getImageUrl(): string {
+            return "img/Dime.png";
+        }
     }
 
-    getImageUrl () : string {
-        return "img/Quarter.png";
+    export class Quarter extends Coin {
+        constructor() {
+            super(.25);
+        }
+
+        getImageUrl(): string {
+            return "img/Quarter.png";
+        }
     }
 }
 
