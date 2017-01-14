@@ -74,6 +74,9 @@ var CocaCola = (function () {
         this.price = 2.30;
         this.category = new SodaCategory();
     }
+    CocaCola.prototype.getImageUrl = function () {
+        return "img/CocaCola.png";
+    };
     return CocaCola;
 }());
 var Sprite = (function () {
@@ -82,16 +85,33 @@ var Sprite = (function () {
         this.price = 2.00;
         this.category = new SodaCategory();
     }
+    Sprite.prototype.getImageUrl = function () {
+        return "img/sprite.png";
+    };
     return Sprite;
+}());
+var DrPepper = (function () {
+    function DrPepper() {
+        this.name = "Dr Pepper";
+        this.price = 2.10;
+        this.category = new SodaCategory();
+    }
+    DrPepper.prototype.getImageUrl = function () {
+        return "img/sodaCan.png";
+    };
+    return DrPepper;
 }());
 /// <reference path="./product.ts" />
 var productFactory = (function () {
     function productFactory() {
     }
     productFactory.GetProduct = function () {
-        var Rnum = Math.floor((Math.random() * 2) + 1);
+        var Rnum = Math.floor((Math.random() * 3) + 1);
         if (Rnum == 1) {
             return new CocaCola();
+        }
+        else if (Rnum == 2) {
+            return new DrPepper();
         }
         return new Sprite();
     };

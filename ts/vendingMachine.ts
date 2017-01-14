@@ -11,7 +11,7 @@ enum VendingMachineSize {
 }
 
 class Cell {
-    constructor(public product: CocaCola) {
+    constructor(public product: Product) {
         
     }
 

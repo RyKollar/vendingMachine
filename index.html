@@ -10,7 +10,7 @@
             <div class="col-md-8 machine" data-bind="foreach: cells">
                 <div class="col-md-4 cell" data-bind="click: $parent.select, css: {selected: $parent.selectedCell().product == $data.product,sold: sold}">
                     <div class="col-md-6 image">
-                        <img height="120px" data-bind="attr: { src: product.category.getImageUrl(), alt: product.category.name }" />
+                        <img height="120px" data-bind="attr: { src: product.getImageUrl(), alt: product.category.getImageUrl() }" />
                     </div>
                     <div class="col-md-6 productInfo">
                         <div data-bind="text: product.name"></div>
