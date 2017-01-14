@@ -37,15 +37,36 @@ var Quarter = (function (_super) {
     return Quarter;
 }(Coin));
 //var coin = new Quarter(); 
-var SodaCategory = (function () {
+var ProductCategory = (function () {
+    function ProductCategory() {
+        this.imgPath = "img/";
+    }
+    return ProductCategory;
+}());
+var SodaCategory = (function (_super) {
+    __extends(SodaCategory, _super);
     function SodaCategory() {
-        this.name = "Soda";
+        var _this = _super.apply(this, arguments) || this;
+        _this.name = "Soda";
+        return _this;
     }
     SodaCategory.prototype.getImageUrl = function () {
-        return "img/SodaCan.png";
+        return this.imgPath + "SodaCan.png";
     };
     return SodaCategory;
-}());
+}(ProductCategory));
+var CandyBarCategory = (function (_super) {
+    __extends(CandyBarCategory, _super);
+    function CandyBarCategory() {
+        var _this = _super.apply(this, arguments) || this;
+        _this.name = "Candy Bar";
+        return _this;
+    }
+    CandyBarCategory.prototype.getImageUrl = function () {
+        return this.imgPath + "CandyBar.png";
+    };
+    return CandyBarCategory;
+}(ProductCategory));
 /// <reference path="productCategory.ts" />
 var CocaCola = (function () {
     function CocaCola() {
@@ -55,12 +76,24 @@ var CocaCola = (function () {
     }
     return CocaCola;
 }());
+var Sprite = (function () {
+    function Sprite() {
+        this.name = "Sprite";
+        this.price = 2.00;
+        this.category = new SodaCategory();
+    }
+    return Sprite;
+}());
 /// <reference path="./product.ts" />
 var productFactory = (function () {
     function productFactory() {
     }
     productFactory.GetProduct = function () {
-        return new CocaCola();
+        var Rnum = Math.floor((Math.random() * 2) + 1);
+        if (Rnum == 1) {
+            return new CocaCola();
+        }
+        return new Sprite();
     };
     return productFactory;
 }());
