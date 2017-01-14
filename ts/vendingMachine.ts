@@ -1,17 +1,17 @@
-/// <reference path="coin.ts" />
 /// <reference path="typings/knockout.d.ts" />
-/// <reference path="product.ts" />
-/// <reference path="productFactory.ts" />
 
+import * as Coins from "./coin"
+import * as Products from "./product"
+import {GetProduct} from "./productFactory"
 
-enum VendingMachineSize {
+export enum VendingMachineSize {
     small = 6,
     medium = 9,
     large = 12
 }
 
 class Cell {
-    constructor(public product: Product) {
+    constructor(public product: Products.Product) {
         
     }
 
@@ -19,9 +19,9 @@ class Cell {
     sold = ko.observable(false);
 }
 
-class VendingMachine {    
+export class VendingMachine {    
     private paid = ko.observable(0);
-    selectedCell = ko.observable(new Cell(new CocaCola()));
+    selectedCell = ko.observable(new Cell(new Products.Initial()));
     cells = ko.observableArray([]);
     acceptedCoins: Coins.Coin[] = [new Coins.Quarter(),new Coins.Dime(),new Coins.Nickle()];
     canPay = ko.pureComputed(() => this.paid() - 
@@ -31,7 +31,7 @@ class VendingMachine {
         this.cells([]);
 
         for (let index = 0; index < givenSize; index++) {
-            let product = productFactory.GetProduct();
+            let product = GetProduct();
             this.cells.push(new Cell(product));
         }
     }

@@ -1,11 +1,11 @@
-abstract class ProductCategory {
+export abstract class ProductCategory {
     protected  imgPath = "img/";
 
     name:string;
     abstract getImageUrl(): string;
 }
 
-class SodaCategory extends ProductCategory {
+export class SodaCategory extends ProductCategory {
     name = "Soda";
 
     getImageUrl() {
@@ -13,7 +13,7 @@ class SodaCategory extends ProductCategory {
     }
 }
 
-class CandyBarCategory extends ProductCategory {
+export class CandyBarCategory extends ProductCategory {
     name = "Candy Bar";
 
     getImageUrl() {

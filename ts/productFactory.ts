@@ -1,16 +1,16 @@
-/// <reference path="./product.ts" />
+import * as Products from "./product"
 
-class productFactory {
-    static GetProduct(): Product {
+//class productFactory {
+    export function GetProduct(): Products.Product {
         let Rnum = Math.floor((Math.random() * 3) + 1);
 
         if (Rnum == 1){
-            return new CocaCola();
+            return new Products.CocaCola();
         }
         else if (Rnum == 2){
-            return new DrPepper();
+            return new Products.DrPepper();
         }
 
-        return new Sprite();
+        return new Products.Sprite();
     }
-}
+//}
